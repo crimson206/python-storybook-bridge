@@ -1,0 +1,6 @@
+python-storybook-core
+pydantic
+fastapi
+uvicorn
+starlette
+typing-extensions

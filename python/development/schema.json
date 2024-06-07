@@ -1,0 +1,89 @@
+{
+    "$defs": {
+      "InnerProp": {
+        "properties": {
+          "arg6": {
+            "title": "Arg6",
+            "type": "string"
+          },
+          "arg7": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Arg7",
+            "type": "object"
+          }
+        },
+        "required": [
+          "arg6",
+          "arg7"
+        ],
+        "title": "InnerProp",
+        "type": "object"
+      }
+    },
+    "properties": {
+      "arg1": {
+        "title": "Arg1",
+        "type": "string"
+      },
+      "arg2": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Arg2"
+      },
+      "arg3": {
+        "enum": [
+          "A",
+          "B"
+        ],
+        "title": "Arg3",
+        "type": "string"
+      },
+      "arg4": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "enum": [
+              "A",
+              "B"
+            ],
+            "type": "string"
+          }
+        ],
+        "title": "Arg4"
+      },
+      "arg5": {
+        "title": "Arg5",
+        "type": "object"
+      },
+      "inner": {
+        "items": {
+          "$ref": "#/$defs/InnerProp"
+        },
+        "title": "Inner",
+        "type": "array"
+      }
+    },
+    "required": [
+      "arg1",
+      "arg2",
+      "arg3",
+      "arg4",
+      "arg5",
+      "inner"
+    ],
+    "title": "InputProp",
+    "type": "object"
+  }

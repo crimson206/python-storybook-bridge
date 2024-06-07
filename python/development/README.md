@@ -1,0 +1,1 @@
+Any form of codes are allowed here, meaning, try whatever you want without caring SOLID, Clean Code, or whatever.
