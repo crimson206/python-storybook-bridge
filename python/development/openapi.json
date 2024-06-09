@@ -1,9 +1,30 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "FastAPI",
-    "version": "0.1.0"
+    "title": "My Sample API",
+    "description": "This is a sample API to demonstrate basic FastAPI functionality.",
+    "termsOfService": "http://example.com/terms/",
+    "contact": {
+      "name": "Support Team",
+      "url": "http://example.com/contact/",
+      "email": "support@example.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "https://ubiquitous-guacamole-rq6px7ww7wwhjgv-8080.app.github.dev",
+      "description": "Primary API server"
+    },
+    {
+      "url": "https://development.example.com/api",
+      "description": "Development API server"
+    }
+  ],
   "paths": {
     "/process_input": {
       "post": {
@@ -13,7 +34,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InputProp"
+                "$ref": "#/components/schemas/WithTypehintInput"
               }
             }
           },
@@ -25,7 +46,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InputProp"
+                  "$ref": "#/components/schemas/WithTypehintOut"
                 }
               }
             }
@@ -59,7 +80,40 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
-      "InputProp": {
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "WithTypehintInput": {
         "properties": {
           "arg1": {
             "type": "string",
@@ -110,40 +164,20 @@
           "arg3",
           "arg4"
         ],
-        "title": "InputProp"
+        "title": "WithTypehintInput"
       },
-      "ValidationError": {
+      "WithTypehintOut": {
         "properties": {
-          "loc": {
-            "items": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "integer"
-                }
-              ]
-            },
-            "type": "array",
-            "title": "Location"
-          },
-          "msg": {
-            "type": "string",
-            "title": "Message"
-          },
-          "type": {
-            "type": "string",
-            "title": "Error Type"
+          "body": {
+            "type": "object",
+            "title": "Body"
           }
         },
         "type": "object",
         "required": [
-          "loc",
-          "msg",
-          "type"
+          "body"
         ],
-        "title": "ValidationError"
+        "title": "WithTypehintOut"
       }
     }
   }
