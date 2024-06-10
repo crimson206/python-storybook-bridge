@@ -1,38 +1,17 @@
-import React from 'react'
-import { DefaultApi, WithTypehintInput, WithTypehintOut } from './typescript-client';
+import type { Meta, StoryObj } from '@storybook/react';
+import { PythonComponent, defaultProps  } from './PythonComponent';
 
-// API 구성 설정
-const configuration = {
-//  basePath: 'https://example.com/api', // API 서버 URL
+
+const meta: Meta<typeof PythonComponent> = {
+  title: "Python",
+  component: PythonComponent,
+  //👇 Enables auto-generated documentation for this component and includes all stories in this file
+  tags: ['autodocs'],
 };
+export default meta;
 
-// API 인스턴스 생성
-const apiInstance = new DefaultApi();
+type Story = StoryObj<typeof PythonComponent>;
 
-const inputProp: WithTypehintInput = {
-    arg1: "Sample String",
-    arg2: ["List", "of", "Strings"],
-    arg3: "A",
-    arg4: "A",
-  };
-
-export default {
-    title: "Welcome"
-}
-
-export const sMyComponent = () => {
-  /**    
-   * const [response, setResponce] = React.useState<WithTypehintOut>()
-
-    apiInstance.processInputProcessInputPost(inputProp).then((response) => {
-        console.log("API 호출 결과:", response.data.body);
-        setResponce(response.data);
-      }).catch((error) => {
-        console.error("API 호출 중 오류 발생:", error);
-      });
-    return <p>Welcome!{JSON.stringify(response, null, 2)}</p>
-  */
-
-
-    return <p>Welcome!</p>
-}
+export const Default: Story = {
+  args: defaultProps
+};

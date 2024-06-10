@@ -1,3 +1,7 @@
+import React, {useRef} from 'react';
+import Editor, { EditorProps, DiffEditor } from '@monaco-editor/react';
+
+const originalExample = `
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Any, Dict, Literal, Optional, Union
@@ -64,3 +68,58 @@ import inspect
 async def process_input():
     source_code = inspect.getsource(with_typehint)
     return source_code
+`
+
+export const defaultProps = {
+    defaultValue: "// some content",
+    defaultLanguage: "typescript",
+    saveViewState: true,
+    width:"100%",
+    height:"40vh",
+}
+
+export const MonacoEditor: React.FC<EditorProps> = ({
+    defaultValue= "// some content",
+    defaultLanguage= "typescript",
+    saveViewState= true,
+    width="100%",
+    height="40vh",
+}) => {
+
+    const defaultProps = {defaultValue,defaultLanguage,saveViewState,width,height}
+
+  return <Editor {...defaultProps} />;
+}
+
+export function App() {
+    const diffEditorRef = useRef(null);
+  
+    function handleEditorDidMount(editor, monaco) {
+      diffEditorRef.current = editor;
+    }
+  
+    function showOriginalValue() {
+      alert(diffEditorRef.current.getOriginalEditor().getValue());
+    }
+  
+    function showModifiedValue() {
+      alert(diffEditorRef.current.getModifiedEditor().getValue());
+    }
+  
+    return (
+      <>
+        <button onClick={showOriginalValue}>show original value</button>
+        <button onClick={showModifiedValue}>show modified value</button>
+        <DiffEditor
+          height="90vh"
+          language="python"
+          original={originalExample}
+          modified={originalExample}
+          onMount={handleEditorDidMount}
+        />
+      </>
+    );
+  }
+
+
+export default MonacoEditor;
