@@ -1,0 +1,29 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Dynamic Schema Generation",
+        "description": "Generate schema for specific paths",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/register_managers": {
+            "get": {
+                "summary": "Registor Managers",
+                "operationId": "registor_managers_register_managers_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Response Registor Managers Register Managers Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

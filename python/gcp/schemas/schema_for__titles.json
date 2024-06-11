@@ -1,0 +1,48 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Dynamic Schema Generation",
+        "description": "Generate schema for specific paths",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/titles": {
+            "get": {
+                "summary": "Get Titles",
+                "operationId": "get_titles_titles_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetTitlesReturn"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GetTitlesReturn": {
+                "properties": {
+                    "titles": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Titles"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "titles"
+                ],
+                "title": "GetTitlesReturn"
+            }
+        }
+    }
+}

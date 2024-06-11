@@ -1,0 +1,26 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Dynamic Schema Generation",
+        "description": "Generate schema for specific paths",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api-schema": {
+            "get": {
+                "summary": "Get Api Schema",
+                "operationId": "get_api_schema_api_schema_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

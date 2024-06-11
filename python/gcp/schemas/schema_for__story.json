@@ -1,0 +1,201 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Dynamic Schema Generation",
+        "description": "Generate schema for specific paths",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/story": {
+            "post": {
+                "summary": "Get Story",
+                "operationId": "get_story_story_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetStoryInput"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoryPatched"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GetStoryInput": {
+                "properties": {
+                    "story_full_paths": {
+                        "type": "string",
+                        "title": "Story Full Paths"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "story_full_paths"
+                ],
+                "title": "GetStoryInput"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "StoryPatched": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "meta": {
+                        "anyOf": [
+                            {
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Meta"
+                    },
+                    "parent": {
+                        "type": "string",
+                        "title": "Parent"
+                    },
+                    "full_path": {
+                        "type": "string",
+                        "title": "Full Path"
+                    },
+                    "kwargs": {
+                        "anyOf": [
+                            {
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Kwargs"
+                    },
+                    "docs": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Docs"
+                    },
+                    "source": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Source"
+                    },
+                    "typehints": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Typehints"
+                    },
+                    "func": {
+                        "type": "null",
+                        "title": "Func"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "meta",
+                    "parent",
+                    "full_path",
+                    "kwargs",
+                    "docs",
+                    "source",
+                    "typehints"
+                ],
+                "title": "StoryPatched"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}

@@ -138,3 +138,6 @@ export interface InputProp {
 
 mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
+
+
+openapi-generator-cli generate -i api-schema.json -g typescript-axios -o ./ts-client

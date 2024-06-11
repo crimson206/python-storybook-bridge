@@ -1,0 +1,5 @@
+python-storybook-core
+pydantic
+fastapi
+uvicorn
+inflection

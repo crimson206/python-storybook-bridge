@@ -1,0 +1,48 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Dynamic Schema Generation",
+        "description": "Generate schema for specific paths",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/all_story_full_paths": {
+            "get": {
+                "summary": "Get All Story Full Paths",
+                "operationId": "get_all_story_full_paths_all_story_full_paths_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetStoryFullPathsReturn"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GetStoryFullPathsReturn": {
+                "properties": {
+                    "story_full_paths": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Story Full Paths"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "story_full_paths"
+                ],
+                "title": "GetStoryFullPathsReturn"
+            }
+        }
+    }
+}
